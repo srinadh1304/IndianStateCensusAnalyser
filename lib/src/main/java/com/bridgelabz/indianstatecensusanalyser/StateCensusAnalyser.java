@@ -77,4 +77,5 @@ public class StateCensusAnalyser
 	    		throw new CensusAnalyserException(e.getMessage(), ExceptionType.CENSUS_WRONG_DELIMITER_OR_HEADER);
 	    	}
 	    }
+	 
 }
