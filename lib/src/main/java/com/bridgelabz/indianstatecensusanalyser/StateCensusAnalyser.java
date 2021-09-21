@@ -43,4 +43,38 @@ public class StateCensusAnalyser
 	    	throw new CensusAnalyserException("CSV File Must Have Comma As Delimiter Or Has Incorrect Header", ExceptionType.CENSUS_WRONG_DELIMITER_OR_HEADER);
 	    }
 	}
+	 public int loadIndianStateCode(String csvFilePath) throws CensusAnalyserException 
+	 {
+	    	
+	        try 
+	        {
+	        	if(csvFilePath.contains(".txt")) 
+	        	{
+	        		throw new CensusAnalyserException("File must be in CSV Format!", ExceptionType.CENSUS_INCORRECT_FILE_FORMAT);
+	        	}
+	        	
+	        	Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
+	            CsvToBeanBuilder<CSVStates> csvToBeanBuilder = new CsvToBeanBuilder<CSVStates>(reader);
+	            csvToBeanBuilder.withType(CSVStates.class);
+	            csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
+	            CsvToBean<CSVStates> csvToBean = csvToBeanBuilder.build();
+	            Iterator<CSVStates> stateCodesCSVIterator = csvToBean.iterator();
+	            
+	            int numberOfEntries = 0;
+	    		while(stateCodesCSVIterator.hasNext()) 
+	    		{
+	    			numberOfEntries++;
+	    			CSVStates censusData = stateCodesCSVIterator.next();
+	    		}
+	    		return numberOfEntries;
+	        } 
+	        catch (IOException e) 
+	        {
+	            throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+	        } 
+	        catch(RuntimeException e) 
+	        {
+	    		throw new CensusAnalyserException(e.getMessage(), ExceptionType.CENSUS_WRONG_DELIMITER_OR_HEADER);
+	    	}
+	    }
 }
