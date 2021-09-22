@@ -12,7 +12,7 @@ public class CensusAnalyserTest
 	private static final String CSV_WITH_WRONG_DELIMITER = "./src/test/resources/CensusDataWithWrongDelimiter.csv";
 	private static final String CSV_WITH_INCORRECT_HEADER = "./src/test/resources/CensusDataIncorrectHeader.csv";
 
-	private static final String INDIAN_STATE_CODES = "./src/test/resources/IndianStateCodes.csv";
+	private static final String INDIAN_STATE_CODES = "./src/test/resources/IndianStateCode.csv";
 	private static final String INDIAN_STATE_CODES_WITH_WRONG_FILEPATH = "./src/main/resources/IndianStateCodes.csv"; 	
 	private static final String INDIAN_STATE_CODES_WITH_WRONG_FILE_FORMAT = "./src/test/resources/IndianStateCodesWithWrongFormat.txt";
 	private static final String INDIAN_STATE_CODES_WITH_WRONG_DELIMITER = "./src/test/resources/IndianStateCodesWithWrongDelimiter.csv";
@@ -104,7 +104,7 @@ public class CensusAnalyserTest
 		{
 			StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
 			int numOfRecords = censusAnalyser.loadIndianStateCode(INDIAN_STATE_CODES);
-			Assert.assertEquals(5,numOfRecords);
+			Assert.assertEquals(37,numOfRecords);
 		} 
 		catch (CensusAnalyserException e) 
 		{ 
